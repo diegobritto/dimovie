@@ -1,4 +1,3 @@
-import 'package:dimovie/model/movie.dart';
 import 'package:dimovie/model/person.dart';
 
 class PersonResponse {
@@ -12,7 +11,8 @@ class PersonResponse {
   (json["results"] as List).map((i) => new Person.fromJson(i)).toList(),
         error = "";
 
+
   PersonResponse.withError(String errorValue)
-      : persons = List(),
+      : persons = null,
         error = errorValue;
 }

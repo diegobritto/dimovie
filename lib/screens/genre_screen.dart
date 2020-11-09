@@ -1,16 +1,15 @@
+import 'package:dimovie/widgets/genres_list.dart';
 import 'package:flutter/material.dart';
 import 'package:dimovie/bloc/get_genres_bloc.dart';
 import 'package:dimovie/model/genre.dart';
 import 'package:dimovie/model/genre_response.dart';
 
-import 'genres_list.dart';
-
-class GenresTab extends StatefulWidget {
+class GenresScreen extends StatefulWidget {
   @override
-  _GenresTabState createState() => _GenresTabState();
+  _GenresScreenState createState() => _GenresScreenState();
 }
 
-class _GenresTabState extends State<GenresTab> {
+class _GenresScreenState extends State<GenresScreen> {
   @override
   void initState() {
     super.initState();

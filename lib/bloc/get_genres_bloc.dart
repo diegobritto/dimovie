@@ -3,7 +3,7 @@ import 'package:dimovie/repository/repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class GenresListBloc {
-  final MovieRepository _repository = MovieRepository();
+  final Repository _repository = Repository();
   final BehaviorSubject<GenreResponse> _subject =
   BehaviorSubject<GenreResponse>();
 

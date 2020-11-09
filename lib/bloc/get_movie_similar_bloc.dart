@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:dimovie/model/movie_response.dart';
 import 'package:dimovie/repository/repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-class MoviesListByGenreBloc {
+class SimilarMoviesBloc {
   final Repository _repository = Repository();
   final BehaviorSubject<MovieResponse> _subject =
-  BehaviorSubject<MovieResponse>();
+      BehaviorSubject<MovieResponse>();
 
-  getMoviesByGenre(int id) async {
-    MovieResponse response = await _repository.getMovieByGenre(id);
+  getSimilarMovies(int id) async {
+    MovieResponse response = await _repository.getSimilarMovies(id);
     _subject.sink.add(response);
   }
 
@@ -21,6 +21,6 @@ class MoviesListByGenreBloc {
   }
 
   BehaviorSubject<MovieResponse> get subject => _subject;
-
+  
 }
-final moviesByGenreBloc = MoviesListByGenreBloc();
+final similarMoviesBloc = SimilarMoviesBloc();

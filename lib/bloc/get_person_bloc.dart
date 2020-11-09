@@ -2,13 +2,13 @@ import 'package:dimovie/model/person_response.dart';
 import 'package:dimovie/repository/repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-class PersonsListBloc {
-  final MovieRepository _repository = MovieRepository();
+class PersonBloc {
+  final Repository _repository = Repository();
   final BehaviorSubject<PersonResponse> _subject =
   BehaviorSubject<PersonResponse>();
 
-  getPersons() async {
-    PersonResponse response = await _repository.getPersons();
+  getPerson() async {
+    PersonResponse response = await _repository.getPerson();
     _subject.sink.add(response);
   }
 
@@ -19,4 +19,4 @@ class PersonsListBloc {
   BehaviorSubject<PersonResponse> get subject => _subject;
 
 }
-final personsBloc = PersonsListBloc();
+final personBloc = PersonBloc();

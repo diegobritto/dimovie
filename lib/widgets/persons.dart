@@ -1,6 +1,7 @@
+import 'package:dimovie/screens/person_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:dimovie/bloc/get_persons_bloc.dart';
+import 'package:dimovie/bloc/get_person_bloc.dart';
 import 'package:dimovie/model/person.dart';
 import 'package:dimovie/model/person_response.dart';
 import 'package:dimovie/style/theme.dart' as Style;
@@ -14,7 +15,7 @@ class _PersonsListState extends State<PersonsList> {
   @override
   void initState() {
     super.initState();
-    personsBloc.getPersons();
+    personBloc.getPerson();
   }
 
   @override
@@ -36,7 +37,7 @@ class _PersonsListState extends State<PersonsList> {
           height: 5.0,
         ),
         StreamBuilder<PersonResponse>(
-          stream: personsBloc.subject.stream,
+          stream: personBloc.subject.stream,
           builder: (context, AsyncSnapshot<PersonResponse> snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data.error != null &&
@@ -114,7 +115,14 @@ class _PersonsListState extends State<PersonsList> {
               padding: EdgeInsets.only(top: 10.0, right: 8.0),
               width: 100.0,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PersonDetailScreen(person: persons[index],),
+                    ),
+                  );
+                },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[

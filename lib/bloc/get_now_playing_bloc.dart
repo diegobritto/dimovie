@@ -3,7 +3,7 @@ import 'package:dimovie/repository/repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class NowPlayingListBloc {
-  final MovieRepository _repository = MovieRepository();
+  final Repository _repository = Repository();
   final BehaviorSubject<MovieResponse> _subject =
   BehaviorSubject<MovieResponse>();
 

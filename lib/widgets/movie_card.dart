@@ -1,3 +1,5 @@
+import 'package:dimovie/screens/movie_detail_screen.dart';
+import 'package:dimovie/widgets/rating.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -27,8 +29,8 @@ class _MovieState extends State<MovieCard> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                //builder: (context) => MovieDetailScreen(movie: movies[index]),
-                ),
+              builder: (context) => MovieDetailScreen(movie: movie),
+            ),
           );
         },
         child: Column(
@@ -67,43 +69,9 @@ class _MovieState extends State<MovieCard> {
                                   movie.poster)),
                     )),
             SizedBox(
-              height: 10.0,
+              height: 15.0,
             ),
-            SizedBox(
-              height: 5.0,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  movie.rating.toString(),
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: 5.0,
-                ),
-                RatingBar(
-                  itemSize: 12.0,
-                  initialRating: movie.rating / 2,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-                  itemBuilder: (context, _) => Icon(
-                    EvaIcons.heart,
-                    color: Style.Colors.secondColor,
-                  ),
-                  unratedColor: Style.Colors.starsColorUnselected,
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                )
-              ],
-            )
+            Rating(rating: movie.rating)
           ],
         ),
       ),

@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           NowPlaying(),
           PersonsList(),
-          GenresScreen(),
+          GenresTab(),
           BestMovies(),
         ],
       ),
