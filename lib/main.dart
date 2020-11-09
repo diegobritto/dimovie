@@ -1,5 +1,5 @@
+import 'package:dimovie/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:dimovie/screens/bottom_menu.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyStatefulWidget(),
+      home: HomeScreen(),
     );
   }
 }

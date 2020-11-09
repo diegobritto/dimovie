@@ -6,6 +6,9 @@ import 'package:dimovie/model/movie_response.dart';
 import 'package:dimovie/style/theme.dart' as Style;
 import 'package:page_indicator/page_indicator.dart';
 
+import 'error_card.dart';
+import 'loading_card.dart';
+
 class NowPlaying extends StatefulWidget {
   @override
   _NowPlayingState createState() => _NowPlayingState();
@@ -42,31 +45,11 @@ class _NowPlayingState extends State<NowPlaying> {
   }
 
   Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 25.0,
-              width: 25.0,
-              child: CircularProgressIndicator(
-                valueColor:
-                new AlwaysStoppedAnimation<Color>(Colors.white),
-                strokeWidth: 4.0,
-              ),
-            )
-          ],
-        ));
+    return LoadingCard();
   }
 
   Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Error occured: $error"),
-          ],
-        ));
+    return  ErrorCard(error: error);
   }
 
   Widget _buildHomeWidget(MovieResponse data) {

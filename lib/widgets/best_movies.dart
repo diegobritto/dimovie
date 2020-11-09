@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dimovie/bloc/get_movies_bloc.dart';
-import 'package:dimovie/model/movie.dart';
 import 'package:dimovie/model/movie_response.dart';
 import 'package:dimovie/style/theme.dart' as Style;
-import 'package:dimovie/widgets/movie_card.dart';
+import 'error_card.dart';
+import 'loading_card.dart';
+import 'movies_list.dart';
 
 class BestMovies extends StatefulWidget {
   @override
@@ -56,63 +57,14 @@ class _BestMoviesState extends State<BestMovies> {
   }
 
   Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 25.0,
-          width: 25.0,
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-          ),
-        )
-      ],
-    ));
+    return LoadingCard();
   }
 
   Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
+    return ErrorCard(error: error);
   }
 
   Widget _buildHomeWidget(MovieResponse data) {
-    List<Movie> movies = data.movies;
-    if (movies.length == 0) {
-      return Container(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Text(
-                  "No More Movies",
-                  style: TextStyle(color: Colors.black45),
-                )
-              ],
-            )
-          ],
-        ),
-      );
-    } else
-      return Container(
-        height: 270.0,
-        padding: EdgeInsets.only(left: 10.0),
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return MovieCard(movie: movies[index],);
-          },
-        ),
-      );
+    return MoviesList(movies: data.movies);
   }
 }

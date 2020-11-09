@@ -1,10 +1,12 @@
-import 'package:dimovie/screens/person_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dimovie/bloc/get_person_bloc.dart';
 import 'package:dimovie/model/person.dart';
 import 'package:dimovie/model/person_response.dart';
 import 'package:dimovie/style/theme.dart' as Style;
+
+import 'error_card.dart';
+import 'loading_card.dart';
 
 class PersonsList extends StatefulWidget {
   @override
@@ -57,30 +59,11 @@ class _PersonsListState extends State<PersonsList> {
   }
 
   Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 25.0,
-          width: 25.0,
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-          ),
-        )
-      ],
-    ));
+    return LoadingCard();
   }
 
   Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
+    return  ErrorCard(error: error);
   }
 
   Widget _buildHomeWidget(PersonResponse data) {
@@ -95,8 +78,8 @@ class _PersonsListState extends State<PersonsList> {
             Column(
               children: <Widget>[
                 Text(
-                  "No More Persons",
-                  style: TextStyle(color: Colors.black45),
+                  "Não há mais pessoas...",
+                  style: TextStyle(color: Style.Colors.titleColor),
                 )
               ],
             )
@@ -116,12 +99,7 @@ class _PersonsListState extends State<PersonsList> {
               width: 100.0,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PersonDetailScreen(person: persons[index],),
-                    ),
-                  );
+
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

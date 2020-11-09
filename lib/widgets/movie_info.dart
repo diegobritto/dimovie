@@ -4,6 +4,9 @@ import 'package:dimovie/model/movie_detail.dart';
 import 'package:dimovie/model/movie_detail_response.dart';
 import 'package:dimovie/style/theme.dart' as Style;
 
+import 'error_card.dart';
+import 'loading_card.dart';
+
 class MovieInfo extends StatefulWidget {
   final int id;
   MovieInfo({Key key, @required this.id}) : super(key: key);
@@ -40,21 +43,11 @@ class _MovieInfoState extends State<MovieInfo> {
   }
 
   Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [],
-    ));
+    return LoadingCard();
   }
 
   Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
+    return  ErrorCard(error: error);
   }
 
   Widget _buildMovieDetailWidget(MovieDetailResponse data) {
@@ -71,7 +64,7 @@ class _MovieInfoState extends State<MovieInfo> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "BUDGET",
+                    "ORÇAMENTO",
                     style: TextStyle(
                         color: Style.Colors.titleColor,
                         fontWeight: FontWeight.w500,
@@ -93,7 +86,7 @@ class _MovieInfoState extends State<MovieInfo> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "DURATION",
+                    "DURAÇÃO",
                     style: TextStyle(
                         color: Style.Colors.titleColor,
                         fontWeight: FontWeight.w500,
@@ -113,7 +106,7 @@ class _MovieInfoState extends State<MovieInfo> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "RELEASE DATE",
+                    "LANÇAMENTO",
                     style: TextStyle(
                         color: Style.Colors.titleColor,
                         fontWeight: FontWeight.w500,
@@ -141,7 +134,7 @@ class _MovieInfoState extends State<MovieInfo> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                "GENRES",
+                "GÊNERO",
                 style: TextStyle(
                     color: Style.Colors.titleColor,
                     fontWeight: FontWeight.w500,

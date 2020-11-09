@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dimovie/widgets/error_card.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -13,6 +14,8 @@ import 'package:dimovie/model/movie_response.dart';
 import 'package:dimovie/model/person.dart';
 import 'package:dimovie/model/person_response.dart';
 import 'package:dimovie/style/theme.dart' as Style;
+
+import 'loading_card.dart';
 
 class Casts extends StatefulWidget {
   final int id;
@@ -42,7 +45,7 @@ class _CastsState extends State<Casts> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 10.0, top: 20.0),
-          child: Text("CASTS", style: TextStyle(
+          child: Text("ELENCO", style: TextStyle(
             color: Style.Colors.titleColor,
             fontWeight: FontWeight.w500,
             fontSize: 12.0
@@ -71,31 +74,11 @@ class _CastsState extends State<Casts> {
   }
 
   Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 25.0,
-          width: 25.0,
-          child: CircularProgressIndicator(
-            valueColor:
-                new AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-          ),
-        )
-      ],
-    ));
+    return LoadingCard();
   }
 
   Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
+    return ErrorCard(error: error);
   }
 
   Widget _buildCastWidget(CastResponse data) {
@@ -111,8 +94,8 @@ class _CastsState extends State<Casts> {
             Column(
               children: <Widget>[
                 Text(
-                  "No More Persons",
-                  style: TextStyle(color: Colors.black45),
+                  "Não há mais pessoas...",
+                  style: TextStyle(color: Style.Colors.titleColor),
                 )
               ],
             )
@@ -135,7 +118,7 @@ class _CastsState extends State<Casts> {
               width: 100.0,
               child: GestureDetector(
                 onTap: () {
-                  
+
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

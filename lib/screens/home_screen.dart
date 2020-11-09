@@ -19,9 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView(
         children: <Widget>[
           NowPlaying(),
-          PersonsList(),
-          GenresTab(),
           BestMovies(),
+          GenresTab(),
+          PersonsList(),
         ],
       ),
     );

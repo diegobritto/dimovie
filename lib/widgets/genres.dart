@@ -3,7 +3,9 @@ import 'package:dimovie/bloc/get_genres_bloc.dart';
 import 'package:dimovie/model/genre.dart';
 import 'package:dimovie/model/genre_response.dart';
 
+import 'error_card.dart';
 import 'genres_list.dart';
+import 'loading_card.dart';
 
 class GenresTab extends StatefulWidget {
   @override
@@ -37,30 +39,11 @@ class _GenresTabState extends State<GenresTab> {
   }
 
   Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 25.0,
-          width: 25.0,
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-          ),
-        )
-      ],
-    ));
+    return LoadingCard();
   }
 
   Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
+    return  ErrorCard(error: error);
   }
 
   Widget _buildHomeWidget(GenreResponse data) {

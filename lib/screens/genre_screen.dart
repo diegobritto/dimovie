@@ -1,4 +1,6 @@
+import 'package:dimovie/widgets/error_card.dart';
 import 'package:dimovie/widgets/genres_list.dart';
+import 'package:dimovie/widgets/loading_card.dart';
 import 'package:flutter/material.dart';
 import 'package:dimovie/bloc/get_genres_bloc.dart';
 import 'package:dimovie/model/genre.dart';
@@ -36,30 +38,11 @@ class _GenresScreenState extends State<GenresScreen> {
   }
 
   Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 25.0,
-          width: 25.0,
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-          ),
-        )
-      ],
-    ));
+    return LoadingCard();
   }
 
   Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
+    return ErrorCard(error: error);
   }
 
   Widget _buildHomeWidget(GenreResponse data) {

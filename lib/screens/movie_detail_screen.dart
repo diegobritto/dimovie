@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:dimovie/widgets/error_card.dart';
+import 'package:dimovie/widgets/loading_card.dart';
 import 'package:dimovie/widgets/rating.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -158,21 +160,11 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   }
 
   Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [],
-    ));
+    return LoadingCard();
   }
 
   Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
+    return ErrorCard(error: error);
   }
 
   Widget _buildVideoWidget(VideoResponse data) {
